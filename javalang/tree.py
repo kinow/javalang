@@ -9,6 +9,16 @@ class CompilationUnit(Node):
 class Import(Node):
     attrs = ("path", "static", "wildcard")
 
+    def to_java(self):
+        value = 'import '
+        if self.static:
+            value = value + 'static '
+        value = value + self.path
+        if self.wildcard:
+            value = value + '.*'
+        value = value + ';'
+        return value
+
 class Documented(Node):
     attrs = ("documentation",)
 
